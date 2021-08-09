@@ -7,6 +7,7 @@ import InfoCard from "../components/InfoCard";
 import Image from "next/image";
 import SmallCard from "../components/SmallCard";
 import MediumCard from "../components/MediumCard";
+import Map from "../components/Map";
 function Search({ searchResults }) {
   const router = useRouter();
 
@@ -20,7 +21,7 @@ function Search({ searchResults }) {
     <div>
       <Header placeholder={`${location} | ${range} | ${numberOfGuests}`} />
 
-      <main className="flex flex-col">
+      <main className="flex">
         <section className="flex-grow pt-14 px-6">
           <p className="text-xs ">
             300+ styas - {range} - for {numberOfGuests} guests
@@ -46,20 +47,24 @@ function Search({ searchResults }) {
           </div>
 
           <div className="">
-          {searchResults?.map(({ img, location, title, description, star, price, total }) => (
-              <InfoCard 
-              key={img} 
-              img={img} 
-              title={title}
-              location={location}
-              description={description}
-              star={star}
-              price={price}
-              total={total}
-              />
-            ))}
-            
+            {searchResults?.map(
+              ({ img, location, title, description, star, price, total }) => (
+                <InfoCard
+                  key={img}
+                  img={img}
+                  title={title}
+                  location={location}
+                  description={description}
+                  star={star}
+                  price={price}
+                  total={total}
+                />
+              )
+            )}
           </div>
+        </section>
+        <section className="hidden xl:inline-flex xl:min-w-[600px]">
+          <Map searchResults={searchResults} />
         </section>
       </main>
 
